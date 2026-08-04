@@ -17,9 +17,11 @@ COPY requirements.txt .
 RUN pip install mysqlclient
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# Copy the rest of the application code (all files)
 COPY . .
+
+# Expose Flask port
+EXPOSE 5000
 
 # Specify the command to run your application
 CMD ["python", "app.py"]
-
