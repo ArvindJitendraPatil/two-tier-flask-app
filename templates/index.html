@@ -1,314 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MovieFlix</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App new🚀</title>
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        /* Reset Default Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-<style>
+        /* Background with subtle gradient */
+        body {
+            background: linear-gradient(to bottom, #0f0f0f, #1c1c1c);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+        /* Glassmorphic Container */
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-body{
-background:#000;
-color:#fff;
-}
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(255, 255, 255, 0.1);
+        }
 
-header{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-padding:25px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-z-index:100;
-}
+        /* Elegant Heading */
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ff9800, #e65100);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
 
-.logo{
-font-size:40px;
-font-weight:700;
-color:#e50914;
-}
+        /* Messages Box */
+        .messages {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
 
-.btn{
-background:#e50914;
-padding:10px 22px;
-border-radius:5px;
-text-decoration:none;
-color:#fff;
-font-weight:600;
-transition:.3s;
-}
+        .messages p {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
 
-.btn:hover{
-background:#b20710;
-}
+        /* Animated Input Fields */
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
 
-.hero{
-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.85)),
-url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=80");
-background-size:cover;
-background-position:center;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-}
+        input[type="text"]:focus {
+            border-color: #ff9800;
+            box-shadow: 0 0 12px rgba(255, 152, 0, 0.5);
+            outline: none;
+        }
 
-.hero-content{
-max-width:800px;
-}
+        /* Glowing Submit Button */
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ff9800, #e65100);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
 
-.hero h1{
-font-size:60px;
-margin-bottom:20px;
-}
+        input[type="submit"]:hover {
+            box-shadow: 0 0 20px rgba(255, 152, 0, 0.6);
+            transform: translateY(-2px);
+        }
 
-.hero p{
-font-size:22px;
-margin-bottom:30px;
-color:#ddd;
-}
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
 
-.email-box{
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap;
-}
+            h1 {
+                font-size: 1.6rem;
+            }
 
-.email-box input{
-width:350px;
-padding:15px;
-border:none;
-outline:none;
-border-radius:4px;
-font-size:16px;
-}
-
-.email-box button{
-padding:15px 25px;
-background:#e50914;
-color:white;
-border:none;
-font-size:18px;
-cursor:pointer;
-border-radius:4px;
-transition:.3s;
-}
-
-.email-box button:hover{
-background:#b20710;
-}
-
-section{
-padding:70px 8%;
-}
-
-.section-title{
-font-size:32px;
-margin-bottom:25px;
-}
-
-.movies{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
-
-.card{
-background:#111;
-border-radius:12px;
-overflow:hidden;
-transition:.3s;
-cursor:pointer;
-}
-
-.card:hover{
-transform:scale(1.05);
-}
-
-.card img{
-width:100%;
-height:300px;
-object-fit:cover;
-}
-
-.card h3{
-padding:15px;
-}
-
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-margin-top:20px;
-}
-
-.feature{
-background:#181818;
-padding:25px;
-border-radius:10px;
-}
-
-.feature h2{
-color:#e50914;
-margin-bottom:10px;
-}
-
-footer{
-background:#111;
-padding:40px;
-text-align:center;
-color:#aaa;
-margin-top:50px;
-}
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:40px;
-}
-
-.hero p{
-font-size:18px;
-}
-
-.logo{
-font-size:30px;
-}
-
-.email-box input{
-width:100%;
-}
-
-}
-
-</style>
-
+            input[type="text"], input[type="submit"] {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
+        <h1>Flask + MySQL App [2 tier] - Josh-batch-10 🔥</h1>
 
-<header>
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message[0] }}</p>
+            {% endfor %}
+        </div>
 
-<div class="logo">
-MovieFlix
-</div>
+        <form id="messageForm">
+            <input type="text" name="new_message" placeholder="Type your message..." required>
+            <input type="submit" value="Send">
+        </form>
+    </div>
 
-<a href="#" class="btn">Sign In</a>
+    <!-- jQuery for Smooth AJAX Requests -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#messageForm").on("submit", function(event) {
+                event.preventDefault(); // Prevent page reload
 
-</header>
+                let messageInput = $("input[name='new_message']");
+                let message = messageInput.val().trim();
 
-<section class="hero">
+                if (message === "") {
+                    alert("Message cannot be empty!");
+                    return;
+                }
 
-<div class="hero-content">
-
-<h1>Unlimited Movies, TV Shows & More</h1>
-
-<p>Watch anywhere. Cancel anytime.</p>
-
-<div class="email-box">
-
-<input type="email" placeholder="Enter your email">
-
-<button>Get Started ></button>
-
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h2 class="section-title">Trending Now</h2>
-
-<div class="movies">
-
-<div class="card">
-<img src="https://picsum.photos/300/450?random=1">
-<h3>Action Hero</h3>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/300/450?random=2">
-<h3>Dark City</h3>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/300/450?random=3">
-<h3>The Last Mission</h3>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/300/450?random=4">
-<h3>Future World</h3>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/300/450?random=5">
-<h3>Galaxy War</h3>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/300/450?random=6">
-<h3>Night Hunter</h3>
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h2 class="section-title">Why Choose MovieFlix?</h2>
-
-<div class="features">
-
-<div class="feature">
-<h2>📺 Watch Everywhere</h2>
-<p>Enjoy your favorite content on TV, laptop, tablet, and mobile.</p>
-</div>
-
-<div class="feature">
-<h2>⬇ Download Offline</h2>
-<p>Save movies and watch them without an internet connection.</p>
-</div>
-
-<div class="feature">
-<h2>👨‍👩‍👧 Family Profiles</h2>
-<p>Create personalized profiles for everyone in your household.</p>
-</div>
-
-<div class="feature">
-<h2>🎬 Unlimited Entertainment</h2>
-<p>Discover thousands of movies and TV shows across genres.</p>
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-<h3>MovieFlix</h3>
-
-<p>Unlimited Entertainment • HTML • CSS</p>
-
-</footer>
-
+                $.ajax({
+                    url: "/submit",
+                    type: "POST",
+                    data: { new_message: message },
+                    success: function(response) {
+                        if (response && response.message) {
+                            $(".messages").append("<p>" + response.message + "</p>");
+                            messageInput.val("");
+                        } else {
+                            console.error("Unexpected response format:", response);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("AJAX Error:", status, error);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
