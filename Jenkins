@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("Code Clone") {
             steps {
-                git url: "http://github.com/LondheShubham153/two-tier-flask-app.git"
+                git url: "http://github.com/ArvindJitendraPatil/two-tier-flask-app.git"
             }
         }
 
